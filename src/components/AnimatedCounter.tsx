@@ -17,7 +17,7 @@ export default function AnimatedCounter() {
             className="flex flex-col justify-center rounded-lg bg-zinc-900 p-10"
           >
             <div className="counter-number text-white-50 mb-2 text-5xl font-bold">
-              <CountUp end={item.value} suffix={item.suffix} />
+              <CountUp end={item.value} suffix={item.suffix} enableScrollSpy />
             </div>
             <div className="text-lg text-white">{item.label}</div>
           </div>
