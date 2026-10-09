@@ -9,10 +9,14 @@ const LogoShowcase = () => {
       <div className="marquee h-52">
         <div className="marquee-box gap-5 md:gap-12">
           {logoIconsList.map((icon, index) => (
-            <LogoIcon key={index} icon={icon} index={index} />
+            <LogoIcon key={`logo-${index}`} icon={icon} index={index} />
           ))}
           {logoIconsList.map((icon, index) => (
-            <LogoIcon key={index} icon={icon} index={index} />
+            <LogoIcon
+              key={`logo-${index + logoIconsList.length}`}
+              icon={icon}
+              index={index}
+            />
           ))}
         </div>
       </div>
