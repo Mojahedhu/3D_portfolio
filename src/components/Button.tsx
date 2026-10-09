@@ -12,7 +12,8 @@ interface ButtonProps {
 
 const Button = ({ text, className, id }: ButtonProps) => {
   return (
-    <a
+    <button
+      type="button"
       onClick={(e) => {
         e.preventDefault(); // Stop the link from jumping instantly
 
@@ -40,7 +41,7 @@ const Button = ({ text, className, id }: ButtonProps) => {
           <img src="/images/arrow-down.svg" alt="arrow" />
         </div>
       </div>
-    </a>
+    </button>
   );
 };
 
