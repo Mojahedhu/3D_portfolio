@@ -37,7 +37,7 @@ const AppShowCase = () => {
         {
           opacity: 1,
           duration: 1,
-          delay: index * (0.3 + 1),
+          delay: 0.3 * (index + 1),
           scrollTrigger: {
             trigger: card,
             start: "top bottom-=100",
