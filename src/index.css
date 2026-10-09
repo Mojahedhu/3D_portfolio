@@ -399,6 +399,7 @@ section {
   position: relative;
 }
 .marquee-box {
+  --marquee-reset-offset: 0.625rem;
   display: flex;
   align-items: center;
   /* width: 200%; */
@@ -407,6 +408,11 @@ section {
   position: absolute;
   overflow: hidden;
   animation: marquee 60s linear infinite;
+}
+@media (min-width: 768px) {
+  .marquee-box {
+    --marquee-reset-offset: 1.5rem;
+  }
 }
 .marquee-box:hover {
   animation-play-state: paused;
@@ -419,7 +425,7 @@ section {
     transform: translateX(0%);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-50% - var(--marquee-reset-offset)));
   }
 }
 /* marquee end */
