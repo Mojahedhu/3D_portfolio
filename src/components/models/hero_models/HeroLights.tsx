@@ -1,0 +1,75 @@
+import * as THREE from "three";
+import { RectAreaLightUniformsLib } from "three/examples/jsm/Addons.js";
+
+RectAreaLightUniformsLib.init();
+
+const HeroLights = () => {
+  return (
+    <>
+      {/* Lamp's light */}
+      <spotLight
+        position={[2, 5, 6]}
+        angle={0.15}
+        penumbra={0.2}
+        intensity={100}
+        color="white"
+      />
+
+      {/* Bluish overhead lamp */}
+      <spotLight
+        position={[4, 5, 4]}
+        angle={0.3}
+        penumbra={0.5}
+        intensity={40}
+        color={"#4cc9f0"}
+      />
+
+      {/* Bluish combination light for side fill start*/}
+      <spotLight
+        position={[-1, -1.4, 2]}
+        angle={0.15}
+        penumbra={1}
+        intensity={100}
+        color={"blue"}
+      />
+      <spotLight
+        position={[-1, -1.4, 2]}
+        angle={0.25}
+        penumbra={1}
+        intensity={50}
+        color={"blue"}
+      />
+      <spotLight
+        position={[-1, -1.4, 2]}
+        angle={0.4}
+        penumbra={1}
+        intensity={40}
+        color={"blue"}
+      />
+      {/* Bluish combination light for side fill end */}
+
+      {/* Purplish side fill */}
+      <spotLight
+        position={[-3, 5, 5]}
+        angle={0.4}
+        penumbra={1}
+        intensity={60}
+        color={"#9d4edd"}
+      />
+
+      {/* Area light for soft moody fill */}
+      <primitive
+        object={new THREE.RectAreaLight("#A259FF", 8, 3, 2)}
+        position={[1, 3, 4]}
+        intensity={15}
+        rotation={[-Math.PI / 4, Math.PI / 4, 0]}
+      />
+
+      {/* Subtle point light of atmospheric tone */}
+      <spotLight position={[0, 1, 0]} intensity={10} color={"#7209b7"} />
+      <spotLight position={[1, 2, -2]} intensity={10} color={"#0d00a4"} />
+    </>
+  );
+};
+
+export default HeroLights;
