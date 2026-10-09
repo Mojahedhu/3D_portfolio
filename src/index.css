@@ -157,7 +157,7 @@ section {
   .app-showcase {
     @apply mt-20 flex w-full items-center justify-center px-5 py-10 md:px-20 md:py-20;
 
-    .showcaselayout {
+    .showcase-layout {
       @apply flex flex-col justify-between gap-10 xl:flex-row;
     }
 
@@ -203,7 +203,7 @@ section {
   }
 
   .cta-wrapper {
-    @apply relative z-20 cursor-pointer;
+    @apply relative z-20 -mt-1.5 cursor-pointer;
   }
 
   .cta-button {
@@ -255,7 +255,7 @@ section {
   }
 
   .tech-card-animated-bg {
-    @apply absolute bottom-[-100%] left-0 h-full w-full bg-[#2D3240] transition-all duration-700 group-hover:bottom-0;
+    @apply absolute -bottom-full left-0 h-full w-full bg-[#2D3240] transition-all duration-700 group-hover:bottom-0;
   }
 
   .tech-card-content {
