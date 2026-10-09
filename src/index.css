@@ -392,28 +392,34 @@ section {
 
 /* marquee */
 .marquee {
-  width: 100dvw;
+  /* width: 100dvw; */
+  width: 100%;
+  white-space: nowrap;
   overflow: hidden;
   position: relative;
 }
 .marquee-box {
   display: flex;
   align-items: center;
-  width: 200%;
+  /* width: 200%; */
+  width: max-content;
   height: 100%;
   position: absolute;
   overflow: hidden;
   animation: marquee 60s linear infinite;
+}
+.marquee-box:hover {
+  animation-play-state: paused;
 }
 .marquee-item {
   float: left;
 }
 @keyframes marquee {
   0% {
-    left: 0;
+    transform: translateX(0%);
   }
   100% {
-    left: -100%;
+    transform: translateX(-50%);
   }
 }
 /* marquee end */
