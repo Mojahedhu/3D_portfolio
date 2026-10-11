@@ -1,6 +1,6 @@
 import { useMediaQuery } from "react-responsive";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { Html, OrbitControls } from "@react-three/drei";
 import { Room } from "./Room";
 import HeroLights from "./HeroLights";
 import { Suspense } from "react";
@@ -24,7 +24,15 @@ const HeroExperience = () => {
         maxPolarAngle={Math.PI / 2} // Maximum angle for vertical rotation
       />
 
-      <Suspense fallback={"loading..."}>
+      <Suspense
+        fallback={
+          <Html>
+            <h1>
+              <div className="size-14 animate-spin rounded-full border-4 border-white border-t-transparent" />
+            </h1>
+          </Html>
+        }
+      >
         <HeroLights />
 
         {/* <Particles /> */}
