@@ -55,12 +55,12 @@ const Experience = () => {
             // The timeline is the trigger element
             trigger: timeline,
             start: "top center",
-            end: "70% center",
+            end: "90% center",
             // Update the animation as the user scrolls
             onUpdate: (self) => {
               // Scale the timeline height as the user scrolls
               // from 1 to 0 as the user scrolls up the screen
-              gsap.to(".timeline", {
+              gsap.to(timeline, {
                 scaleY: 1 - self.progress,
               });
             },

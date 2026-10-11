@@ -3,6 +3,7 @@ import TechIconCardExperience from "../components/models/tech_logos/TechIconCard
 import TitleHeader from "../components/TitleHeader";
 import { techStackIcons } from "../constants";
 import gsap from "gsap";
+import { Suspense } from "react";
 
 const TechStack = () => {
   // Animate the tech cards in the skills section
@@ -55,7 +56,13 @@ const TechStack = () => {
               <div className="tech-card-content">
                 {/* The tech-icon-wrapper div contains the the TechCardExperienceModel components which renders the 3D Model of tech stack icon.  */}
                 <div className="tech-icon-wrapper">
-                  <TechIconCardExperience {...techStackIcon} />
+                  <Suspense
+                    fallback={
+                      <div className="text-white-50 text-sm">Loading...</div>
+                    }
+                  >
+                    <TechIconCardExperience {...techStackIcon} />
+                  </Suspense>
                 </div>
                 {/* The padding-x and w-fll classes are used to add horizontal padding to the text and make it take up the full width of the component. */}
                 <div className="padding-x w-full">
