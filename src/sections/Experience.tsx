@@ -4,89 +4,95 @@ import TitleHeader from "../components/TitleHeader";
 import { expCards } from "../constants";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Experience = () => {
-  useGSAP(() => {
-    // loop through each timeline card and animate them in
-    // as the use scroll to each card
+  const containerRef = useRef<HTMLDivElement>(null);
+  useGSAP(
+    () => {
+      // loop through each timeline card and animate them in
+      // as the use scroll to each card
 
-    gsap.utils.toArray<Element>(".timeline-card").forEach((card) => {
-      // Animate the card coming in from the left
-      // and fade in
-      gsap.from(card, {
-        // Move the card in from left
-        xPercent: -100,
-        // Make the card invisible at the start
-        opacity: 0,
-        // Set the origin of the animation to the lift side of the card
-        transformOrigin: "left left",
-        // Animate over 1 second
-        duration: 1,
-        // Use a power2 ease-in-out curve
-        ease: "power2.inOut",
-        // Trigger the animation when the card is 80% of the way down the screen
-        scrollTrigger: {
-          // The card is the trigger element
-          trigger: card,
-          // Trigger the animation when the card is 80% down the screen
-          start: "top 80%",
-        },
+      gsap.utils.toArray<Element>(".timeline-card").forEach((card) => {
+        // Animate the card coming in from the left
+        // and fade in
+        gsap.from(card, {
+          // Move the card in from left
+          xPercent: -100,
+          // Make the card invisible at the start
+          opacity: 0,
+          // Set the origin of the animation to the lift side of the card
+          transformOrigin: "left left",
+          // Animate over 1 second
+          duration: 1,
+          // Use a power2 ease-in-out curve
+          ease: "power2.inOut",
+          // Trigger the animation when the card is 80% of the way down the screen
+          scrollTrigger: {
+            // The card is the trigger element
+            trigger: card,
+            // Trigger the animation when the card is 80% down the screen
+            start: "top 80%",
+          },
+        });
       });
-    });
 
-    // Animate the timeline hight as the use scrolls
-    // from the top of the timeline to 70% down the screen
-    // the timeline should scale from 1 to 0
-    // as the user scroll up the screen
-    gsap.to(".timeline", {
-      // Set the origin of the animation to bottom of the timeline
-      transformOrigin: "bottom bottom",
-      // Animate the timeline height over 1 second
-      // ease: "power1.inout",
-      // Trigger the animation when the timeline is at the top of the screen
-      // ane end it when the timeline is at 70% down the screen
-      scrollTrigger: {
-        trigger: ".timeline",
-        start: "top center",
-        end: "70% center",
-        // Update the animation as the user scrolls
-        onUpdate: (self) => {
-          // Scale the timeline height as the user scrolls
-          // from 1 to 0 as the user scroll up the screen
-          gsap.to(".timeline", {
-            scaleY: 1 - self.progress,
-          });
-        },
-      },
-    });
+      // Loop through each timeline and shrink it as the user scrolls
+      // as the user scroll up the screen
+      gsap.utils.toArray<Element>(".timeline").forEach((timeline) => {
+        // Animate the timeline hight as the use scrolls
+        // from the top of the timeline to 90% down the screen
+        // the timeline should scale from 1 to 0
+        // as the user scroll up the screen
+        gsap.to(timeline, {
+          scaleY: 0,
+          // Set the origin of the animation to bottom of the timeline
+          transformOrigin: "bottom bottom",
+          // Trigger the animation when the timeline is at the top of the screen
+          // and end it when the timeline is at 90% down the screen
+          scrollTrigger: {
+            // The timeline is the trigger element
+            trigger: timeline,
+            // Start the animation when the timeline is at the top of the screen
+            start: "top center",
+            // End the animation when the timeline is at 90% down the screen
+            end: "90% center",
+            // Smoothly transition the animation as the user scrolls
+            scrub: 1.5,
+          },
+        });
+      });
 
-    // Loop through each expText element and animate them in
-    // as the use scroll to each text element
-    gsap.utils.toArray<Element>(".expText").forEach((text) => {
-      // Animate the text opacity from 0 to 1
-      // over one second
-      // with a power2 ease-in-out curve
-      // ease-in-out curve
-      gsap.from(text, {
+      // Loop through each expText element and animate them in
+      // as the use scroll to each text element
+      gsap.utils.toArray<Element>(".expText").forEach((text) => {
         // Animate the text opacity from 0 to 1
-        opacity: 0,
-        // Animate over 1 second
-        duration: 1,
-        // Use a power2 ease-in-out curve
-        ease: "power1.inOut",
-        // Trigger the animation when the text is 60% of the way down the screen
-        scrollTrigger: {
-          // The text is the trigger element
-          trigger: text,
-          start: "top 60%",
-        },
-      });
-    }, "<");
-  }, []);
+        // over one second
+        // with a power2 ease-in-out curve
+        // ease-in-out curve
+        gsap.from(text, {
+          // Animate the text opacity from 0 to 1
+          opacity: 0,
+          // Animate over 1 second
+          duration: 1,
+          // Use a power2 ease-in-out curve
+          ease: "power1.inOut",
+          // Trigger the animation when the text is 60% of the way down the screen
+          scrollTrigger: {
+            // The text is the trigger element
+            trigger: text,
+            start: "top 60%",
+          },
+        });
+      }, "<");
+    },
+    { scope: containerRef },
+  );
   return (
     <section
+      ref={containerRef}
       id="experience"
       className="flex-center section-padding mt-20 md:mt-40 xl:p-0"
     >
