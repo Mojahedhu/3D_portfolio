@@ -1,7 +1,6 @@
 import CountUpComponent, { type CountUpProps } from "react-countup";
 import { counterItems } from "../constants";
-import { useRef, type FC } from "react";
-import { useGSAP } from "@gsap/react";
+import { type FC } from "react";
 
 // Resolves runtime object wrapper from Vite CJS bundling
 const CountUp =
@@ -12,34 +11,34 @@ export default function AnimatedCounter() {
   // This is an alternative of the countup lib
   // this code has no effect, I put as reference
   // for future
-  const counterRef = useRef(null);
-  const countersRef = useRef([]);
+  // const counterRef = useRef(null);
+  // const countersRef = useRef([]);
 
-  useGSAP(() => {
-    countersRef.current.forEach((counter, index) => {
-      const numberElement = counter.querySelector(".counter-number");
-      const item = counterItems[index];
+  // useGSAP(() => {
+  //   countersRef.current.forEach((counter, index) => {
+  //     const numberElement = counter.querySelector(".counter-number");
+  //     const item = counterItems[index];
 
-      // Set initial value to 0
-      gsap.set(numberElement, { innerText: "0" });
+  //     // Set initial value to 0
+  //     gsap.set(numberElement, { innerText: "0" });
 
-      // Create the counting animation
-      gsap.to(numberElement, {
-        innerText: item.value,
-        duration: 2.5,
-        ease: "power2.out",
-        snap: { innerText: 1 }, // Ensures whole numbers
-        scrollTrigger: {
-          trigger: "#counter",
-          start: "top center",
-        },
-        // Add the suffix after counting is complete
-        onComplete: () => {
-          numberElement.textContent = `${item.value}${item.suffix}`;
-        },
-      });
-    }, counterRef);
-  }, []);
+  //     // Create the counting animation
+  //     gsap.to(numberElement, {
+  //       innerText: item.value,
+  //       duration: 2.5,
+  //       ease: "power2.out",
+  //       snap: { innerText: 1 }, // Ensures whole numbers
+  //       scrollTrigger: {
+  //         trigger: "#counter",
+  //         start: "top center",
+  //       },
+  //       // Add the suffix after counting is complete
+  //       onComplete: () => {
+  //         numberElement.textContent = `${item.value}${item.suffix}`;
+  //       },
+  //     });
+  //   }, counterRef);
+  // }, []);
 
   return (
     <div
