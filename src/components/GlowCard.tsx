@@ -4,16 +4,19 @@ interface GlowCardProps {
   card: {
     review: string;
     imgPath: string;
-    logoPath: string;
-    title: string;
-    date: string;
-    responsibilities: string[];
+    logoPath?: string;
+    title?: string;
+    date?: string;
+    responsibilities?: string[];
+    name?: string;
+    mentions?: string;
   };
   children: React.ReactNode;
   index: number;
 }
 
 const GlowCard = ({ card, children, index }: GlowCardProps) => {
+  const { review } = card;
   //   refs for all the cards
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
 
@@ -58,7 +61,7 @@ const GlowCard = ({ card, children, index }: GlowCardProps) => {
         ))}
       </div>
       <div className="mb-5">
-        <p className="text-white-50 text-lg">{card.review}</p>
+        <p className="text-white-50 text-lg">{review}</p>
       </div>
       {children}
     </div>

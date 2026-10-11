@@ -260,7 +260,7 @@ section {
 
   .tech-card-content {
     /* xl:h-[50vh] to xl:min-h-85 */
-    @apply relative z-10 flex flex-col items-center overflow-hidden group-hover:cursor-grab md:justify-center xl:min-h-85 xl:gap-5;
+    @apply relative z-10 flex flex-col items-center overflow-hidden group-hover:cursor-grab group-active:cursor-grabbing md:justify-center xl:min-h-85 xl:gap-5;
 
     & p {
       @apply text-white-50 pb-5 text-center text-lg font-semibold xl:pb-0 2xl:text-2xl;
