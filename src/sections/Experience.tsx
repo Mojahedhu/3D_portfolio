@@ -47,7 +47,6 @@ const Experience = () => {
         // the timeline should scale from 1 to 0
         // as the user scroll up the screen
         gsap.to(timeline, {
-          scaleY: 0,
           // Set the origin of the animation to bottom of the timeline
           transformOrigin: "bottom bottom",
           // Trigger the animation when the timeline is at the top of the screen
@@ -55,12 +54,16 @@ const Experience = () => {
           scrollTrigger: {
             // The timeline is the trigger element
             trigger: timeline,
-            // Start the animation when the timeline is at the top of the screen
             start: "top center",
-            // End the animation when the timeline is at 90% down the screen
-            end: "90% center",
-            // Smoothly transition the animation as the user scrolls
-            scrub: 1.5,
+            end: "70% center",
+            // Update the animation as the user scrolls
+            onUpdate: (self) => {
+              // Scale the timeline height as the user scrolls
+              // from 1 to 0 as the user scrolls up the screen
+              gsap.to(".timeline", {
+                scaleY: 1 - self.progress,
+              });
+            },
           },
         });
       });
