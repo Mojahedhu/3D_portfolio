@@ -6,6 +6,7 @@ import FeatureCards from "./sections/FeatureCards";
 import Experience from "./sections/Experience";
 import TechStack from "./sections/TechStack";
 import Testimonials from "./sections/Testimonials";
+import Contact from "./sections/Contact";
 const App = () => {
   return (
     <>
@@ -17,6 +18,7 @@ const App = () => {
       <Experience />
       <TechStack />
       <Testimonials />
+      <Contact />
     </>
   );
 };
