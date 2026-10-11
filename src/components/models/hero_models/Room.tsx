@@ -15,8 +15,8 @@ export function Room(props) {
     "/models/optimized-room.glb",
   ) as unknown as GLTFResult;
 
-  const screensRef = useRef(null);
-  const lightRef = useRef(null);
+  const screensRef = useRef<THREE.Mesh>(null);
+  const lightRef = useRef<THREE.SpotLight>(null);
   const matcapTexture = useTexture("/images/textures/mat1.png");
 
   const curtainMaterial = new THREE.MeshPhongMaterial({
