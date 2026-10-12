@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
 import TitleHeader from "../components/TitleHeader";
 import ContactExperience from "../components/models/contact/ContactExperience";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
-  const formRef = useRef(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -21,7 +22,14 @@ const Contact = () => {
     setLoading(true); // Show loading state
 
     try {
-      // Reset form and stop loading
+      await emailjs.sendForm(
+        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
+      );
+
+      //   Reset form and stop loading
       setForm({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("EmailJS Error:", error); // Optional: show toast
@@ -87,7 +95,7 @@ const Contact = () => {
                   />
                 </div>
 
-                <button type="submit">
+                <button type="submit" disabled={loading}>
                   <div className="cta-button group">
                     <div className="bg-circle" />
                     <p className="text">
