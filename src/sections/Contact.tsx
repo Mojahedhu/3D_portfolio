@@ -6,6 +6,7 @@ import emailjs from "@emailjs/browser";
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -20,6 +21,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); // Show loading state
+    setErrorMessage("");
 
     try {
       await emailjs.sendForm(
@@ -33,6 +35,7 @@ const Contact = () => {
       setForm({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("EmailJS Error:", error); // Optional: show toast
+      setErrorMessage("Failed to send message. Please try again.");
     } finally {
       setLoading(false); // Always stop loading, even on error
     }
@@ -94,6 +97,12 @@ const Contact = () => {
                     required
                   />
                 </div>
+
+                {errorMessage && (
+                  <p className="text-center text-sm text-red-500">
+                    {errorMessage}
+                  </p>
+                )}
 
                 <button type="submit" disabled={loading}>
                   <div className="cta-button group">
