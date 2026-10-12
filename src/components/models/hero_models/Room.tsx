@@ -8,12 +8,15 @@ import { useRef } from "react";
 import { useTexture, useGLTF } from "@react-three/drei";
 import { EffectComposer, SelectiveBloom } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
+import type { GLTFResult } from "../types";
 
 export function Room(props) {
-  const { nodes, materials } = useGLTF("/models/optimized-room.glb");
+  const { nodes, materials } = useGLTF(
+    "/models/optimized-room.glb",
+  ) as unknown as GLTFResult;
 
-  const screensRef = useRef();
-  const lightRef = useRef();
+  const screensRef = useRef<THREE.Mesh>(null);
+  const lightRef = useRef<THREE.SpotLight>(null);
   const matcapTexture = useTexture("/images/textures/mat1.png");
 
   const curtainMaterial = new THREE.MeshPhongMaterial({

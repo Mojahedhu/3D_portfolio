@@ -1,8 +1,9 @@
 import { useMediaQuery } from "react-responsive";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { Html, OrbitControls } from "@react-three/drei";
 import { Room } from "./Room";
 import HeroLights from "./HeroLights";
+import { Suspense } from "react";
 
 const HeroExperience = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
@@ -23,16 +24,26 @@ const HeroExperience = () => {
         maxPolarAngle={Math.PI / 2} // Maximum angle for vertical rotation
       />
 
-      <HeroLights />
-
-      {/* <Particles /> */}
-      <group
-        scale={isMobile ? 0.7 : 1}
-        position={[0, -3.5, 0]}
-        rotation={[0, -Math.PI / 4, 0]}
+      <Suspense
+        fallback={
+          <Html>
+            <h1>
+              <div className="size-14 animate-spin rounded-full border-4 border-white border-t-transparent" />
+            </h1>
+          </Html>
+        }
       >
-        <Room />
-      </group>
+        <HeroLights />
+
+        {/* <Particles /> */}
+        <group
+          scale={isMobile ? 0.7 : 1}
+          position={[0, -3.5, 0]}
+          rotation={[0, -Math.PI / 4, 0]}
+        >
+          <Room />
+        </group>
+      </Suspense>
     </Canvas>
   );
 };
