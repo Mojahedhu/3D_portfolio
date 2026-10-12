@@ -1,11 +1,20 @@
-import { useRef, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type SubmitEvent,
+} from "react";
 import TitleHeader from "../components/TitleHeader";
 import ContactExperience from "../components/models/contact/ContactExperience";
 import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
+  const successTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [form, setForm] = useState({
     name: "",
@@ -13,15 +22,27 @@ const Contact = () => {
     message: "",
   });
 
-  const handleChange = (e) => {
+  // In useEffect cleanup:
+  useEffect(() => {
+    return () => {
+      if (successTimeoutRef.current) clearTimeout(successTimeoutRef.current);
+    };
+  }, []);
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true); // Show loading state
     setErrorMessage("");
+    setSuccessMessage(""); // Reset previous success message on new attempt
+
+    if (!formRef.current) return;
 
     try {
       await emailjs.sendForm(
@@ -33,6 +54,16 @@ const Contact = () => {
 
       //   Reset form and stop loading
       setForm({ name: "", email: "", message: "" });
+
+      if (successTimeoutRef.current) clearTimeout(successTimeoutRef.current);
+      // 2. Display success confirmation
+      setSuccessMessage(
+        "Thank you! Your message has been sent successfully. 🎉",
+      );
+      // 3. Automatically remove it after 5 seconds
+      successTimeoutRef.current = setTimeout(() => {
+        setSuccessMessage("");
+      }, 5000);
     } catch (error) {
       console.error("EmailJS Error:", error); // Optional: show toast
       setErrorMessage("Failed to send message. Please try again.");
@@ -80,11 +111,11 @@ const Contact = () => {
                     name="email"
                     value={form.email}
                     onChange={handleChange}
-                    placeholder="What’s your email address?"
+                    placeholder="What's your email address?"
                     required
                   />
                 </div>
-                {/* Mesaage field */}
+                {/* Message field */}
                 <div>
                   <label htmlFor="message">Your Message</label>
                   <textarea
@@ -97,6 +128,13 @@ const Contact = () => {
                     required
                   />
                 </div>
+
+                {/* Success Confirmation */}
+                {successMessage && (
+                  <div className="rounded-lg border border-green-500/30 bg-green-500/10 p-3 text-center text-sm text-green-400 transition-all duration-300">
+                    {successMessage}
+                  </div>
+                )}
 
                 {errorMessage && (
                   <p className="text-center text-sm text-red-500">
