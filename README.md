@@ -22,7 +22,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Features](#features)
@@ -44,7 +44,7 @@ The entire site is animated using **GSAP** with scroll-triggered effects and fea
 
 ---
 
-## ✨ Features
+## Features
 
 - 🏠 **Hero Section** — Animated text loop with word cycling, a GSAP fade-in headline, and an interactive 3D room model
 - 📊 **Animated Counters** — Scroll-triggered stats (years of experience, clients, projects, retention rate)
@@ -60,7 +60,7 @@ The entire site is animated using **GSAP** with scroll-triggered effects and fea
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 | Category         | Technology                                      |
 | ---------------- | ----------------------------------------------- |
@@ -78,7 +78,7 @@ The entire site is animated using **GSAP** with scroll-triggered effects and fea
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 portfolio_one/
@@ -138,7 +138,7 @@ portfolio_one/
 
 ---
 
-## 🗂 Sections
+## Sections
 
 | Section           | Description                                                                       |
 | ----------------- | --------------------------------------------------------------------------------- |
@@ -155,11 +155,11 @@ portfolio_one/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
-- **Node.js** `>=18.x`
+- **Node.js** `^20.19.0 || >=22.12.0` (required by Vite 8)
 - **pnpm** `>=9.x` — install with `npm install -g pnpm`
 
 ### Installation
@@ -193,7 +193,7 @@ portfolio_one/
 
 ---
 
-## 🔑 Environment Variables
+## Environment Variables
 
 Create a `.env` file in the root of the project based on `.env.example`:
 
@@ -214,7 +214,7 @@ To get these values:
 
 ---
 
-## 📜 Available Scripts
+## Available Scripts
 
 | Command        | Description                                     |
 | -------------- | ----------------------------------------------- |
@@ -225,7 +225,7 @@ To get these values:
 
 ---
 
-## 🐛 Known Issues & Improvements
+## Known Issues & Improvements
 
 ### 3D / HDR
 
