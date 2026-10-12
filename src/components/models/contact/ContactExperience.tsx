@@ -1,6 +1,7 @@
-import { OrbitControls } from "@react-three/drei";
+import { Html, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Computer } from "./Computer";
+import { Suspense } from "react";
 
 const ContactExperience = () => {
   return (
@@ -32,7 +33,17 @@ const ContactExperience = () => {
         </mesh>
 
         <group scale={0.03} position={[0, -1.49, -2]} castShadow>
-          <Computer />
+          <Suspense
+            fallback={
+              <Html>
+                <div className="flex h-full w-full items-center justify-center">
+                  <div className="size-14 animate-spin rounded-full border-4 border-white border-t-transparent" />
+                </div>
+              </Html>
+            }
+          >
+            <Computer />
+          </Suspense>
         </group>
       </group>
     </Canvas>

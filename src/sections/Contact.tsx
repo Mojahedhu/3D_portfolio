@@ -1,5 +1,4 @@
 import {
-  Suspense,
   useEffect,
   useRef,
   useState,
@@ -160,15 +159,7 @@ const Contact = () => {
           {/* Right side the 3D model */}
           <div className="min-h-96 xl:col-span-7">
             <div className="h-full w-full overflow-hidden rounded-3xl bg-[#cd7c2e] hover:cursor-grab">
-              <Suspense
-                fallback={
-                  <div className="flex h-full w-full items-center justify-center">
-                    <div className="size-14 animate-spin rounded-full border-4 border-white border-t-transparent" />
-                  </div>
-                }
-              >
-                <ContactExperience />
-              </Suspense>
+              <ContactExperience />
             </div>
           </div>
         </div>
