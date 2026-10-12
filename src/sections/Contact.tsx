@@ -38,11 +38,11 @@ const Contact = () => {
 
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!formRef.current) return;
+
     setLoading(true); // Show loading state
     setErrorMessage("");
     setSuccessMessage(""); // Reset previous success message on new attempt
-
-    if (!formRef.current) return;
 
     try {
       await emailjs.sendForm(
