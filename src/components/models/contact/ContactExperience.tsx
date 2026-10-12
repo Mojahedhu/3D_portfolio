@@ -30,6 +30,7 @@ const ContactExperience = () => {
           <planeGeometry args={[30, 30]} />
           <meshStandardMaterial color="#a46b2d" />
         </mesh>
+
         <group scale={0.03} position={[0, -1.49, -2]} castShadow>
           <Computer />
         </group>
