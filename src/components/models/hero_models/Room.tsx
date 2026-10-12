@@ -9,8 +9,9 @@ import { useTexture, useGLTF } from "@react-three/drei";
 import { EffectComposer, SelectiveBloom } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import type { GLTFResult } from "../types";
+import type { ThreeElements } from "@react-three/fiber";
 
-export function Room(props) {
+export function Room(props: ThreeElements["group"]) {
   const { nodes, materials } = useGLTF(
     "/models/optimized-room.glb",
   ) as unknown as GLTFResult;

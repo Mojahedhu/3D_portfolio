@@ -6,6 +6,7 @@ Files: computer-optimized.glb [486.38KB] > C:\Users\user\Downloads\Video\Vishwas
 
 import { useGLTF } from "@react-three/drei";
 import type { GLTFResult } from "../types";
+import type { ThreeElements } from "@react-three/fiber";
 
 // type GLTFResult = GLTF & {
 //   nodes: {
@@ -18,7 +19,7 @@ import type { GLTFResult } from "../types";
 //   };
 // };
 
-export function Computer(props) {
+export function Computer(props: ThreeElements["group"]) {
   const { nodes, materials } = useGLTF(
     "/models/computer-optimized-transformed.glb",
   ) as unknown as GLTFResult;

@@ -10,6 +10,8 @@ const Particles = ({ count = 100 }: ParticlesProps) => {
   const mesh = useRef<THREE.Points>(null);
 
   const particles = useMemo(() => {
+    // eslint-disable-next-line react-hooks/refs
+    if (!mesh.current) return;
     const temp = [];
     for (let i = 0; i < count; i++) {
       temp.push({
@@ -46,9 +48,8 @@ const Particles = ({ count = 100 }: ParticlesProps) => {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
+          args={[positions, 3]}
           count={count}
-          array={positions}
-          itemSize={3}
         />
       </bufferGeometry>
       <pointsMaterial
